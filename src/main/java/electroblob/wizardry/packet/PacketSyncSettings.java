@@ -39,6 +39,8 @@ public class PacketSyncSettings implements IMessageHandler<Message, IMessage> {
 		Wizardry.settings.creativeBypassesArcaneLock = message.settings.creativeBypassesArcaneLock;
 		Wizardry.settings.slowTimeAffectsPlayers = message.settings.slowTimeAffectsPlayers;
 		Wizardry.settings.replaceVanillaFireballs = message.settings.replaceVanillaFireballs;
+		Wizardry.settings.allowSpellsToPlaceFireBlock = message.settings.allowSpellsToPlaceFireBlock;
+		Wizardry.settings.allowSpellsToDestroyBlock = message.settings.allowSpellsToDestroyBlock;
 		Wizardry.settings.replaceVanillaFallDamage = message.settings.replaceVanillaFallDamage;
 		Wizardry.settings.forfeitChance = message.settings.forfeitChance;
 		Wizardry.settings.progressionRequirements = message.settings.progressionRequirements;
@@ -71,6 +73,8 @@ public class PacketSyncSettings implements IMessageHandler<Message, IMessage> {
 			settings.creativeBypassesArcaneLock = buf.readBoolean();
 			settings.slowTimeAffectsPlayers = buf.readBoolean();
 			settings.replaceVanillaFireballs = buf.readBoolean();
+			settings.allowSpellsToPlaceFireBlock = buf.readBoolean();
+			settings.allowSpellsToDestroyBlock = buf.readBoolean();
 			settings.replaceVanillaFallDamage = buf.readBoolean();
 			settings.forfeitChance = buf.readFloat();
 			settings.progressionRequirements = new int[Tier.values().length - 1];
@@ -87,6 +91,8 @@ public class PacketSyncSettings implements IMessageHandler<Message, IMessage> {
 			buf.writeBoolean(settings.creativeBypassesArcaneLock);
 			buf.writeBoolean(settings.slowTimeAffectsPlayers);
 			buf.writeBoolean(settings.replaceVanillaFireballs);
+			buf.writeBoolean(settings.allowSpellsToPlaceFireBlock);
+			buf.writeBoolean(settings.allowSpellsToDestroyBlock);
 			buf.writeBoolean(settings.replaceVanillaFallDamage);
 			buf.writeFloat((float)settings.forfeitChance); // Configs don't have floats but this can only be 0-1 anyway
 			for(int i = 0; i < settings.progressionRequirements.length; i++) buf.writeInt(settings.progressionRequirements[i]);
