@@ -322,6 +322,10 @@ public final class Settings {
 	public boolean passiveMobsAreAllies = false;
 	/** <b>[Synchronised]</b> Whether to replace Minecraft's own fireballs with wizardry fireballs. */
 	public boolean replaceVanillaFireballs = true;
+	/** <b>[Synchronised]</b> Allows spells to place fire blocks (e.g., when they hit a surface). */
+	public boolean allowSpellsToPlaceFireBlock = true;
+	/** <b>[Synchronised]</b> Allows spells to destroy blocks (e.g., when they hit a solid block). */
+	public boolean allowSpellsToDestroyBlock = true;
 	/**
 	 * <b>[Synchronised]</b> Whether to replace Minecraft's distance-based fall damage calculation with an equivalent,
 	 * velocity-based one.
@@ -840,6 +844,22 @@ public final class Settings {
 		Wizardry.proxy.setToNamedBooleanEntry(property);
 		property.setRequiresWorldRestart(true);
 		replaceVanillaFireballs = property.getBoolean();
+		propOrder.add(property.getName());
+
+		property = config.get(TWEAKS_CATEGORY, "allowSpellsToPlaceFireBlock", true,
+				"Allows spells to place fire blocks (e.g., when they hit a surface).");
+		property.setLanguageKey("config." + Wizardry.MODID + ".allow_Spells_To_Place_Fire_Block");
+		Wizardry.proxy.setToNamedBooleanEntry(property);
+		property.setRequiresWorldRestart(true);
+		allowSpellsToPlaceFireBlock = property.getBoolean();
+		propOrder.add(property.getName());
+
+		property = config.get(TWEAKS_CATEGORY, "allowSpellsToDestroyBlock", true,
+				"Allows spells to destroy blocks (e.g., when they hit a solid block).");
+		property.setLanguageKey("config." + Wizardry.MODID + ".allow_Spells_To_Destroy_Block");
+		Wizardry.proxy.setToNamedBooleanEntry(property);
+		property.setRequiresWorldRestart(true);
+		allowSpellsToDestroyBlock = property.getBoolean();
 		propOrder.add(property.getName());
 
 		property = config.get(TWEAKS_CATEGORY, "replaceVanillaFallDamage", true,
